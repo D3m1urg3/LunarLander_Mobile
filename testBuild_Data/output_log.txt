@@ -1,0 +1,26 @@
+Initialize engine version: 4.6.1f1 (d1db7a1b5196)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 970 (ID=0x13c2)
+    Vendor:   NVIDIA
+    VRAM:     3072 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: D:\GitVault\LunarLanderMini\LunarLanderUnity\testBuild_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading D:\GitVault\LunarLanderMini\LunarLanderUnity\testBuild_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: D:\GitVault\LunarLanderMini\LunarLanderUnity\testBuild_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading D:\GitVault\LunarLanderMini\LunarLanderUnity\testBuild_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: D:\GitVault\LunarLanderMini\LunarLanderUnity\testBuild_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading D:\GitVault\LunarLanderMini\LunarLanderUnity\testBuild_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+- Completed reload, in  0.087 seconds
+desktop: 1920x1080 60Hz; virtual: 3280x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+Platform assembly: D:\GitVault\LunarLanderMini\LunarLanderUnity\testBuild_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: D:\GitVault\LunarLanderMini\LunarLanderUnity\testBuild_Data\Managed\System.dll (this message is harmless)
+UnloadTime: 7.359159 ms
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 219.
+Total: 1.630995 ms (FindLiveObjects: 0.030079 ms CreateObjectMapping: 0.017279 ms MarkObjects: 0.324471 ms  DeleteObjects: 0.007039 ms)
+
