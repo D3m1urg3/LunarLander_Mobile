@@ -24,7 +24,11 @@ public class SpaceShipManager_forMobile : MonoBehaviour {
 	//Private variables
 	Vector3 angles; // Vector to store rotation angles
 	Animator anim; // Ship animator
-	
+
+	void Awake()
+	{
+		fuel = 1000;
+	}
 	
 	
 	

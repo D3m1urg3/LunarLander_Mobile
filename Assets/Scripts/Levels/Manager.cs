@@ -29,7 +29,13 @@ public class Manager : MonoBehaviour {
 		man.cameraManager = theCamera;
 		man.colManager = colliders;
 		man.textManager = messages;
+
+		PlayerPrefs.DeleteAll ();
 	}
-	
+
+	void OnApplicationQuit()
+	{
+		PlayerPrefs.DeleteAll ();
+	}
 
 }
