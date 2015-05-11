@@ -23,12 +23,7 @@ public class CameraManager_forMobile : MonoBehaviour {
 
 	void Awake()
 	{
-		if(Manager.IsGyroSupported)
-		{
-			Screen.orientation = ScreenOrientation.Landscape;
-			m_gyro = Input.gyro;
-			m_gyro.enabled = true;
-		}
+
 	}
 	
 	// Use this for initialization
@@ -37,7 +32,13 @@ public class CameraManager_forMobile : MonoBehaviour {
 		checkForZoom = true;
 		camFullSize = thisCamera.orthographicSize;
 		camOriginalPosition = thisCamera.transform.position;
-		
+
+		if(Manager.IsGyroSupported)
+		{
+			Screen.orientation = ScreenOrientation.Landscape;
+			m_gyro = Input.gyro;
+			m_gyro.enabled = true;
+		}
 	}
 	
 	// Update is called once per frame
@@ -47,7 +48,7 @@ public class CameraManager_forMobile : MonoBehaviour {
 
 
 		//Move camera with the ship
-		//if (Manager.IsGyroSupported) //for mobile
+		if (Manager.IsGyroSupported) //for mobile
 			thisCamera.transform.Rotate (0.0f, 0.0f, m_gyro.rotationRateUnbiased.z);
 
 		

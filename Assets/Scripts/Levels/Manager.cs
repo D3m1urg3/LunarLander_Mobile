@@ -35,6 +35,7 @@ public class Manager : MonoBehaviour {
 
 		//Is gyroscope supported?
 		IsGyroSupported = SystemInfo.supportsGyroscope;
+		//Debug.Log (IsGyroSupported);
 
 		PlayerPrefs.DeleteAll ();
 	}
