@@ -19,14 +19,11 @@ public class CameraManager_forMobile : MonoBehaviour {
 	enum camMode {zoomIn, zoomOut};
 
 	//Gyroscope 
-	bool IsGyroSupported;
 	Gyroscope m_gyro;
 
 	void Awake()
 	{
-		IsGyroSupported = SystemInfo.supportsGyroscope;
-		
-		if(IsGyroSupported)
+		if(Manager.IsGyroSupported)
 		{
 			Screen.orientation = ScreenOrientation.Landscape;
 			m_gyro = Input.gyro;
@@ -47,7 +44,11 @@ public class CameraManager_forMobile : MonoBehaviour {
 	void Update () {
 
 		thisCamera.transform.position = new Vector3(ship.transform.position.x, ship.transform.position.y,-10.0f);
-		thisCamera.transform.Rotate (0.0f, 0.0f, m_gyro.rotationRateUnbiased.z);
+
+
+		//Move camera with the ship
+		//if (Manager.IsGyroSupported) //for mobile
+			thisCamera.transform.Rotate (0.0f, 0.0f, m_gyro.rotationRateUnbiased.z);
 
 		
 		if (checkForZoom && zoomTrigger.doZoomIn) {

@@ -39,10 +39,17 @@ public class SpaceShipManager_forMobile : MonoBehaviour {
 		//ship.transform.position += new Vector3(0,4,0);
 		
 		// Parameter Initialization
-		//angles = ship.transform.eulerAngles;
-		//maxAngle += angles.z;
 
-		ship.transform.rotation = cam.transform.rotation;
+		if(Manager.IsGyroSupported)//Mobile Init
+		{
+			ship.transform.rotation = cam.transform.rotation;			
+		}
+		else//PC init
+		{
+			angles = ship.transform.eulerAngles;
+			maxAngle += angles.z;
+
+		}
 
 		enginesON = false;
 		shipDestroyed = false;
@@ -63,37 +70,38 @@ public class SpaceShipManager_forMobile : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-		// Rotation controls
-		ship.transform.rotation = cam.transform.rotation;
 
-
-		/*
-		angles.z += -1.0f*Input.GetAxis ("Horizontal") * spinVelocity * Time.deltaTime; //Angle increase controled by spinVelocity
-		angles.z = Mathf.Clamp (angles.z, -1.0f*maxAngle, maxAngle); //Limit angle
-		
-		ship.transform.eulerAngles = angles;
-		*/
-		// Thrust controls. fuel + animation
-		
-		foreach(Touch touch in Input.touches)
+		if(Manager.IsGyroSupported)
 		{
-			if(touch.phase == TouchPhase.Began && fuel > 0)
+			// Rotation controls
+			ship.transform.rotation = cam.transform.rotation;
+
+			// Thrust controls. fuel + animation
+			foreach(Touch touch in Input.touches)
+			{
+				if(touch.phase == TouchPhase.Began && fuel > 0)
+					enginesON = true;
+				else if(touch.phase == TouchPhase.Ended)
+					enginesON = false;
+			}
+		}
+		else
+		{
+			angles.z += -1.0f*Input.GetAxis ("Horizontal") * spinVelocity * Time.deltaTime; //Angle increase controled by spinVelocity
+			angles.z = Mathf.Clamp (angles.z, -1.0f*maxAngle, maxAngle); //Limit angle
+			
+			ship.transform.eulerAngles = angles;
+
+			if (Input.GetKeyDown (KeyCode.UpArrow) && fuel > 0) 
+			{
 				enginesON = true;
-			else if(touch.phase == TouchPhase.Ended)
+			} 
+			else if (Input.GetKeyUp (KeyCode.UpArrow)) 
+			{
 				enginesON = false;
+			}
 		}
-		/*
-		if (Input.GetKeyDown (KeyCode.UpArrow) && fuel > 0) {
-			enginesON = true;
-			
-			
-			
-		} 
-		else if (Input.GetKeyUp (KeyCode.UpArrow)) {
-			enginesON = false;
-		}
-		*/
+
 		anim.SetBool ("Thrust", enginesON);
 		anim.SetBool ("Destroyed", shipDestroyed);
 		

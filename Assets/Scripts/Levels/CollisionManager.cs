@@ -5,7 +5,6 @@ public class CollisionManager : MonoBehaviour {
 
 	GameObject ship;
 	Camera cam;
-	ShipCollisionRegister shipColReg;
 
 	public float maxLandingSpeed;
 	public float maxLandingInclination;
@@ -14,26 +13,31 @@ public class CollisionManager : MonoBehaviour {
 	void Start () {
 		ship = man.shipManager.ship;
 		cam = man.cameraManager.thisCamera;
-		shipColReg = man.shipManager.ship.GetComponent<ShipCollisionRegister>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-		if (shipColReg.nonLandingZoneCollision) 
+		if (ShipCollisionRegister.nonLandingZoneCollision) 
 		{
 			man.shipManager.shipDestroyed = true;
 
 			Invoke("DestroyAndRestart",1);
 
 		}
-		else if(shipColReg.laserCollision)
+		else if(ShipCollisionRegister.laserCollision)
 		{
 			man.shipManager.shipDestroyed = true;
 			
 			Invoke("DestroyAndRestart",1);
 		}
-		else if (shipColReg.landingZoneCollision ) {
+		else if(ShipCollisionRegister.singularityCollision)
+        {
+			man.shipManager.shipDestroyed = true;
+			
+			Invoke("DestroyAndRestart",1);
+		}
+		else if (ShipCollisionRegister.landingZoneCollision ) {
 			if ( CheckLandingSpeed() && CheckLandingInclination() )
 			{
 
@@ -48,7 +52,7 @@ public class CollisionManager : MonoBehaviour {
 				{
 					Time.timeScale = 1;
 					//Show Score
-					man.uiLeftManager.score += shipColReg.scoreMultiplier * man.shipManager.fuel;
+					man.uiLeftManager.score += ShipCollisionRegister.scoreMultiplier * man.shipManager.fuel;
 					//Log Score
 					PlayerPrefs.SetInt("score",man.uiLeftManager.score);
 					PlayerPrefs.SetInt("fuel",man.shipManager.fuel);
@@ -101,6 +105,8 @@ public class CollisionManager : MonoBehaviour {
 		}
 		else
 		{
+			//Restart Ship Collision register
+			ShipCollisionRegister.Restart();
 			//Time.timeScale = 1;
 			//Log Score
 			PlayerPrefs.SetInt("fuel",man.shipManager.fuel);

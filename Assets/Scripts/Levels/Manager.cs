@@ -21,14 +21,20 @@ public class Manager : MonoBehaviour {
 	public CollisionManager colliders;
 	public OverlayTextManager messages;
 
+	public static bool IsGyroSupported;
+
 	void Awake () {
-	
+
+
 		man.shipManager = ship;
 		man.uiLeftManager = uiLeft;
 		man.uiRightManager = uiRight;
 		man.cameraManager = theCamera;
 		man.colManager = colliders;
 		man.textManager = messages;
+
+		//Is gyroscope supported?
+		IsGyroSupported = SystemInfo.supportsGyroscope;
 
 		PlayerPrefs.DeleteAll ();
 	}
