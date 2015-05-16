@@ -110,11 +110,11 @@ public class SpaceShipManager_forMobile : MonoBehaviour {
 
 		//Sound FX
 
-		if (enginesON) 
+		if (enginesON && !shipFX.isPlaying) 
 		{
 			shipFX.Play();
 		}
-		else
+		else if(!enginesON)
 		{
 			shipFX.Stop ();
 		}
