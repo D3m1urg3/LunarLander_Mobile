@@ -15,7 +15,7 @@ public class ShipCollisionRegister : MonoBehaviour {
 		if (col.gameObject.name == "LandPad") 
 		{
 			landingZoneCollision = true;
-			LanPadValue multi = col.gameObject.GetComponent<LanPadValue>();
+			LanPadVal_w_smoke multi = col.gameObject.GetComponent<LanPadVal_w_smoke>();
 			scoreMultiplier = multi.scoreMultiplier;
 		}
 		else if (col.gameObject.name == "nonLandingZones")

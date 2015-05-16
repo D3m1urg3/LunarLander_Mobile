@@ -41,30 +41,11 @@ public class CollisionManager : MonoBehaviour {
 			if ( CheckLandingSpeed() && CheckLandingInclination() )
 			{
 
-				//Show Text
-				man.textManager.message.text = "CONGRATULATIONS!";
-
-				if(!Input.anyKeyDown)
-				{
-					Time.timeScale = 0;
-				}
-				else
-				{
-					Time.timeScale = 1;
-					//Show Score
-					man.uiLeftManager.score += ShipCollisionRegister.scoreMultiplier * man.shipManager.fuel;
-					//Log Score
-					PlayerPrefs.SetInt("score",man.uiLeftManager.score);
-					PlayerPrefs.SetInt("fuel",man.shipManager.fuel);
-					//Restart Level
-					Application.LoadLevel(Application.loadedLevel);
-				}
+				Invoke("GrazAndRestart",1);
 
 			}
 			else
 			{
-				man.shipManager.shipDestroyed = true;
-				man.textManager.message.text = "GAME OVER";
 
 				Invoke("DestroyAndRestart",1);
 
@@ -98,7 +79,22 @@ public class CollisionManager : MonoBehaviour {
 	void DestroyAndRestart()
 	{
 		man.textManager.message.text = "GAME OVER";
-		
+		man.shipManager.shipDestroyed = true;
+
+		foreach(Touch touch in Input.touches)
+		{
+			if(touch.phase != TouchPhase.Ended)
+			{
+				//Restart Ship Collision register
+				ShipCollisionRegister.Restart();
+				//Log Score
+				PlayerPrefs.SetInt("fuel",man.shipManager.fuel);
+				//Restart Level
+				Application.LoadLevel(Application.loadedLevel);
+			}
+		}
+
+		/*
 		if(!Input.anyKeyDown)
 		{
 			//Time.timeScale = 0f;
@@ -114,8 +110,28 @@ public class CollisionManager : MonoBehaviour {
 			Application.LoadLevel(Application.loadedLevel);
 			
 		}
+		*/
 	}
 
-
+	void GrazAndRestart()
+	{
+		man.textManager.message.text = "CONGRATULATIONS!";
+		
+		foreach(Touch touch in Input.touches)
+		{
+			if(touch.phase != TouchPhase.Ended)
+			{
+				//Restart Ship Collision register
+				ShipCollisionRegister.Restart();
+				//Show Score
+				man.uiLeftManager.score += ShipCollisionRegister.scoreMultiplier * man.shipManager.fuel;
+				//Log Score
+				PlayerPrefs.SetInt("score",man.uiLeftManager.score);
+				PlayerPrefs.SetInt("fuel",man.shipManager.fuel);
+				//Restart Level
+				Application.LoadLevel(Application.loadedLevel);
+			}
+		}
+	}
 	
 }

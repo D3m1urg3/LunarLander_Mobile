@@ -41,7 +41,7 @@ public class SpaceShipManager_forMobile : MonoBehaviour {
 		
 		// Parameter Initialization
 
-		if(Manager.IsGyroSupported)//Mobile Init
+		if(Manager.IsGyroSupported || true)//Mobile Init
 		{
 			ship.transform.rotation = cam.transform.rotation;			
 		}
@@ -72,7 +72,7 @@ public class SpaceShipManager_forMobile : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if(Manager.IsGyroSupported)
+		if(Manager.IsGyroSupported || true)
 		{
 			// Rotation controls
 			ship.transform.rotation = cam.transform.rotation;

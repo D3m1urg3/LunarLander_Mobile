@@ -33,7 +33,7 @@ public class CameraManager_forMobile : MonoBehaviour {
 		camFullSize = thisCamera.orthographicSize;
 		camOriginalPosition = thisCamera.transform.position;
 
-		if(Manager.IsGyroSupported)
+		if(Manager.IsGyroSupported || true)
 		{
 			Screen.orientation = ScreenOrientation.Landscape;
 			m_gyro = Input.gyro;
@@ -48,7 +48,7 @@ public class CameraManager_forMobile : MonoBehaviour {
 
 
 		//Move camera with the ship
-		if (Manager.IsGyroSupported) //for mobile
+		if (Manager.IsGyroSupported || true) //for mobile
 			thisCamera.transform.Rotate (0.0f, 0.0f, m_gyro.rotationRateUnbiased.z);
 
 		
