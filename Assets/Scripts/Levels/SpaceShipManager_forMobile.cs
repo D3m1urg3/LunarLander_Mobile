@@ -110,16 +110,22 @@ public class SpaceShipManager_forMobile : MonoBehaviour {
 
 		//Sound FX
 
-		if (enginesON && !shipFX.isPlaying) 
+		if (enginesON && !man.soundFxManager.thrust_sound.isPlaying) 
 		{
-			shipFX.Play();
+			man.soundFxManager.thrust_sound.Play();
+			
 		}
 		else if(!enginesON)
 		{
-			shipFX.Stop ();
+			man.soundFxManager.thrust_sound.Stop();
 		}
 
-
+		if(shipDestroyed && !man.soundFxManager.explosion_sound.isPlaying)
+		{
+			man.soundFxManager.explosion_sound.Play ();
+		}
+		else if(!shipDestroyed)
+			man.soundFxManager.explosion_sound.Stop ();
 
 		
 		if (Input.GetKeyDown (KeyCode.Escape)) 

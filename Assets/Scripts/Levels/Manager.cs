@@ -9,6 +9,7 @@ public struct man
 	public static CameraManager_forMobile cameraManager;
 	public static CollisionManager colManager;
 	public static OverlayTextManager textManager;
+	public static SoundFXManager soundFxManager;
 
 }
 
@@ -20,6 +21,7 @@ public class Manager : MonoBehaviour {
 	public CameraManager_forMobile theCamera;
 	public CollisionManager colliders;
 	public OverlayTextManager messages;
+	public SoundFXManager sound;
 
 	public static bool IsGyroSupported;
 
@@ -32,6 +34,7 @@ public class Manager : MonoBehaviour {
 		man.cameraManager = theCamera;
 		man.colManager = colliders;
 		man.textManager = messages;
+		man.soundFxManager = sound;
 
 		//Is gyroscope supported?
 		IsGyroSupported = SystemInfo.supportsGyroscope;
