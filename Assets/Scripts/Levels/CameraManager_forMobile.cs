@@ -63,8 +63,6 @@ public class CameraManager_forMobile : MonoBehaviour {
 		//Move camera with the ship
 		if (Manager.IsGyroSupported || true) //for mobile
 		{
-
-
 			if(Mathf.Abs(m_gyro.rotationRateUnbiased.z) > 0.05f)
 				thisCamera.transform.Rotate (0.0f, 0.0f,  cam_angular_speed*(initialGyro_z + m_gyro.rotationRateUnbiased.z));				
 				
