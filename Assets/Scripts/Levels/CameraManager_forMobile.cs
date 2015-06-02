@@ -17,7 +17,7 @@ public class CameraManager_forMobile : MonoBehaviour {
 	Vector3 camOriginalPosition;
 	bool checkForZoom;
 
-	float initialGyro_z;
+	float angle_zero;
 
 	enum camMode {zoomIn, zoomOut};
 
@@ -26,7 +26,6 @@ public class CameraManager_forMobile : MonoBehaviour {
 
 	void Awake()
 	{
-
 	}
 	
 	// Use this for initialization
@@ -39,16 +38,16 @@ public class CameraManager_forMobile : MonoBehaviour {
 		if(Manager.IsGyroSupported || true)
 		{
 			Screen.autorotateToPortrait = Screen.autorotateToPortraitUpsideDown = false;
-			Screen.orientation = ScreenOrientation.Landscape;
+			Screen.autorotateToLandscapeLeft = Screen.autorotateToLandscapeRight = false;
+			Screen.orientation = ScreenOrientation.LandscapeLeft;
 
 			m_gyro = Input.gyro;
 			Input.gyro.enabled = true;
 			m_gyro.enabled = true;
 
-			initialGyro_z = m_gyro.rotationRateUnbiased.z;
-
-			Debug.Log(m_gyro.attitude.eulerAngles.z);
 			thisCamera.transform.eulerAngles = new Vector3(0.0f,0.0f,m_gyro.attitude.eulerAngles.z);
+
+
 
 
 		}
@@ -64,7 +63,20 @@ public class CameraManager_forMobile : MonoBehaviour {
 		if (Manager.IsGyroSupported || true) //for mobile
 		{
 			if(Mathf.Abs(m_gyro.rotationRateUnbiased.z) > 0.05f)
-				thisCamera.transform.Rotate (0.0f, 0.0f,  cam_angular_speed*(initialGyro_z + m_gyro.rotationRateUnbiased.z));				
+			{
+				float angle = m_gyro.attitude.eulerAngles.z - 360.0f;
+
+				Debug.Log("gyro euler: " + m_gyro.attitude.eulerAngles);
+				Debug.Log("angle: " + angle);
+				Debug.Log("Device Rotation rate: : " + m_gyro.rotationRateUnbiased.z);
+
+				thisCamera.transform.Rotate (0.0f, 0.0f,  cam_angular_speed*(m_gyro.rotationRateUnbiased.z)*Time.deltaTime);				
+				
+			//	thisCamera.transform.eulerAngles = new Vector3(0.0f,0.0f,angle);
+				
+			}
+				
+
 				
 		}
 		
