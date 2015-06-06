@@ -7,6 +7,7 @@ public class SpaceShipManager_forMobile : MonoBehaviour {
 	
 	//Managed object
 	public GameObject ship;
+	public GameObject engines;
 	public Camera cam;
 	//Public behaviour parameters
 	//Movement
@@ -23,12 +24,16 @@ public class SpaceShipManager_forMobile : MonoBehaviour {
 	
 	//Private variables
 	Vector3 angles; // Vector to store rotation angles
-	Animator anim; // Ship animator
+	Animator ship_anim; // Ship animator
+	Animator engine_anim;
 	AudioSource shipFX;
 
 	void Awake()
 	{
 		fuel = 1000;
+		enginesON = false;
+		shipDestroyed = false;
+
 	}
 	
 	
@@ -53,16 +58,21 @@ public class SpaceShipManager_forMobile : MonoBehaviour {
 		}
 
 		enginesON = false;
+		engine_anim = engines.GetComponent<Animator> ();
+
+
 		shipDestroyed = false;
-		anim = ship.GetComponent<Animator>();
+		ship_anim = ship.GetComponent<Animator>();
 		shipFX = ship.GetComponent<AudioSource> ();
 		
 		// Fuel value storage in Player Prefs
 		// TODO: make it cleaner
-		if (PlayerPrefs.HasKey ("fuel")) {
+		if (PlayerPrefs.HasKey ("fuel")) 
+		{
 			fuel = PlayerPrefs.GetInt("fuel");
 		} 
-		else {
+		else 
+		{
 			fuel = 1000;
 			PlayerPrefs.SetInt ("fuel", fuel);
 		}
@@ -105,8 +115,8 @@ public class SpaceShipManager_forMobile : MonoBehaviour {
 
 		// Ship animation triggers
 
-		anim.SetBool ("Thrust", enginesON); //engines
-		anim.SetBool ("Destroyed", shipDestroyed); //Destruction
+		engine_anim.SetBool ("EnginesON", enginesON); //engines
+		ship_anim.SetBool ("Destroyed", shipDestroyed); //Destruction
 
 		//Sound FX
 

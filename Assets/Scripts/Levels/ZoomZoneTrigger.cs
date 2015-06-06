@@ -4,20 +4,24 @@ using System.Collections;
 public class ZoomZoneTrigger : MonoBehaviour {
 
 	public bool doZoomIn;
-	
-	void Start()
+
+
+	void Awake()
 	{
 		doZoomIn = false;
 	}
 
 	void OnTriggerEnter2D (Collider2D other)
 	{
-		doZoomIn = true;
+
+		if(other.gameObject.layer == 9)
+			doZoomIn = true;
 
 	}
 	void OnTriggerExit2D (Collider2D other)
 	{
-		doZoomIn = false;
+		if(other.gameObject.layer == 9)
+			doZoomIn = false;
 		
 	}
 

@@ -9,7 +9,7 @@ public class CameraManager_forMobile : MonoBehaviour {
 
 	public GameObject ship;
 	
-	public float camZoomSize = 2f;
+	public float camZoomSize = 3f;
 	public float cam_angular_speed;
 	
 	//Private members
@@ -26,6 +26,7 @@ public class CameraManager_forMobile : MonoBehaviour {
 
 	void Awake()
 	{
+		thisCamera.orthographicSize = 5f;
 	}
 	
 	// Use this for initialization
@@ -45,7 +46,7 @@ public class CameraManager_forMobile : MonoBehaviour {
 			Input.gyro.enabled = true;
 			m_gyro.enabled = true;
 
-			thisCamera.transform.eulerAngles = new Vector3(0.0f,0.0f,m_gyro.attitude.eulerAngles.z);
+			thisCamera.transform.eulerAngles = Vector3.zero;
 
 
 
@@ -66,14 +67,12 @@ public class CameraManager_forMobile : MonoBehaviour {
 			{
 				float angle = m_gyro.attitude.eulerAngles.z - 360.0f;
 
-				Debug.Log("gyro euler: " + m_gyro.attitude.eulerAngles);
-				Debug.Log("angle: " + angle);
-				Debug.Log("Device Rotation rate: : " + m_gyro.rotationRateUnbiased.z);
+				//Debug.Log("gyro euler: " + m_gyro.attitude.eulerAngles);
+				//Debug.Log("angle: " + angle);
+				//Debug.Log("Device Rotation rate: : " + m_gyro.rotationRateUnbiased.z);
 
 				thisCamera.transform.Rotate (0.0f, 0.0f,  cam_angular_speed*(m_gyro.rotationRateUnbiased.z)*Time.deltaTime);				
-				
-			//	thisCamera.transform.eulerAngles = new Vector3(0.0f,0.0f,angle);
-				
+
 			}
 				
 

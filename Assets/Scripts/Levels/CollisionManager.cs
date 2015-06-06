@@ -4,6 +4,8 @@ using System.Collections;
 public class CollisionManager : MonoBehaviour {
 
 	GameObject ship;
+	GameObject engines;
+
 	Camera cam;
 
 	public float maxLandingSpeed;
@@ -12,7 +14,9 @@ public class CollisionManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		ship = man.shipManager.ship;
+		engines = man.shipManager.engines;
 		cam = man.cameraManager.thisCamera;
+
 	}
 	
 	// Update is called once per frame
@@ -78,6 +82,7 @@ public class CollisionManager : MonoBehaviour {
 
 	void DestroyAndRestart()
 	{
+		engines.SetActive (false);
 		man.textManager.message.text = "GAME OVER";
 		man.shipManager.shipDestroyed = true;
 
@@ -90,6 +95,8 @@ public class CollisionManager : MonoBehaviour {
 				//Log Score
 				PlayerPrefs.SetInt("fuel",man.shipManager.fuel);
 				//Restart Level
+				man.cameraManager.thisCamera.transform.eulerAngles = Vector3.zero;
+				engines.SetActive (true);
 				Application.LoadLevel(Application.loadedLevel);
 			}
 		}
@@ -129,6 +136,7 @@ public class CollisionManager : MonoBehaviour {
 				PlayerPrefs.SetInt("score",man.uiLeftManager.score);
 				PlayerPrefs.SetInt("fuel",man.shipManager.fuel);
 				//Restart Level
+				man.cameraManager.thisCamera.transform.eulerAngles = Vector3.zero;
 				Application.LoadLevel(Application.loadedLevel);
 			}
 		}

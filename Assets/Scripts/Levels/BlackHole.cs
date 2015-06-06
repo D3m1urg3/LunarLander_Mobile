@@ -36,7 +36,10 @@ public class BlackHole : MonoBehaviour {
 	{
 		if(isInRange)
 		{
-			gravity_force = gameObject.transform.position - ship.transform.position;
+			float ship_to_hole = (gameObject.transform.position - ship.transform.position).magnitude;
+			gravity_force = (gameObject.transform.position - ship.transform.position);
+			gravity_force.Normalize();
+			gravity_force = (1.0f/(ship_to_hole*ship_to_hole))*gravity_force;
 			
 			ship_physics.velocity = ship_physics.velocity + gravity_force * gravity_push;
 		}
