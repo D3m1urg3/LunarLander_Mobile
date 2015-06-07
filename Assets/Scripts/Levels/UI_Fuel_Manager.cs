@@ -84,8 +84,8 @@ public class UI_Fuel_Manager : MonoBehaviour {
 			percent_0x = percent_x0 = 9;
 		}
 
-		Debug.Log("fuel percent= " + fuel_percent);
-		Debug.Log("percent digits= " + number_x0.number + " " + number_0x.number);
+		//Debug.Log("fuel percent= " + fuel_percent);
+		//Debug.Log("percent digits= " + number_x0.number + " " + number_0x.number);
 
 	}
 

@@ -29,7 +29,7 @@ public class UI_Number : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
-		Debug.Log ("num: " + number); 
+		//Debug.Log ("num: " + number); 
 
 		if (number <= 9) 
 		{
@@ -52,6 +52,14 @@ public class UI_Number : MonoBehaviour {
 				number_renders_blue[number].enabled = true;
 
 				break;
+
+			default:
+				foreach (SpriteRenderer sprite in number_renders_blue)
+					sprite.enabled = false;
+				
+				number_renders_blue[number].enabled = true;
+				break;
+
 			}
 
 		}
