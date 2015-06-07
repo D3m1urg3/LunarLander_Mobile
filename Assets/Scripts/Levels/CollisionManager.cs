@@ -59,7 +59,7 @@ public class CollisionManager : MonoBehaviour {
 
 	}
 
-	bool CheckLandingInclination()
+	public bool CheckLandingInclination()
 	{
 		bool goodLandingAngle = false;
 		
@@ -70,10 +70,11 @@ public class CollisionManager : MonoBehaviour {
 		
 	}
 	
-	bool CheckLandingSpeed()
+	public bool CheckLandingSpeed()
 	{
 		bool goodLandingSpeed = false;
-		
+
+		Debug.Log (Mathf.Abs (ship.GetComponent<Rigidbody2D> ().velocity.y));
 		if (Mathf.Abs (ship.GetComponent<Rigidbody2D>().velocity.y) < maxLandingSpeed)
 			goodLandingSpeed = true;
 		

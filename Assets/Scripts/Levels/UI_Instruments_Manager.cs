@@ -4,70 +4,77 @@ using System.Collections;
 public class UI_Instruments_Manager : MonoBehaviour {
 
 	public UI_Number [] altitude_digits = new UI_Number[5];
-	public UI_Number [] velocity_digits = new UI_Number[5];
+	public UI_Number [] speed_vertical_digits = new UI_Number[5];
+	public UI_Number [] speed_horizontal_digits = new UI_Number[5];
 
-
+	public float refresh_time;
+	
 	float altitude;
 	float mscale = 100f;
 	float zeroHeight;
 
-	int speed;
+	int speed_vertical;
+	int speed_horizontal;
 
+	float timer;
+
+	bool isRed;
 	// Use this for initialization
 	void Start () {
 		Vector3 zeroPosition = man.cameraManager.thisCamera.ScreenToWorldPoint (Vector3.zero);
 		
 		zeroHeight = zeroPosition.y;
 	
+		timer = 0.0f;
+
+		foreach (UI_Number digit in altitude_digits)
+			digit.DisableRender ();
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
+
+		//Timer to limit sampling
+		timer += Time.deltaTime;
+
+		if (timer < refresh_time)
+			return;
+		else
+		{
+			timer = 0.0f;
+		}
+
+
+		//Sample altitude and speed
 		altitude = (int) ( mscale * (man.shipManager.ship.transform.position.y - zeroHeight) );
 
 		Vector3 velocity = man.shipManager.ship.GetComponent<Rigidbody2D>().velocity;
 
-		speed = (int) Mathf.Round (10f * velocity.y);
+		speed_vertical = (int)Mathf.Abs( Mathf.Round (100f * velocity.y) );
+		speed_horizontal = (int)Mathf.Abs( Mathf.Round (100f * velocity.x) );
 
-		float sum_altitude = 0.0f;
-		float sum_velocity = 0.0f;
 
-		
-		for( int i = 4; i >= 0; --i)
+		//Check Landing speed
+		isRed = !man.colManager.CheckLandingSpeed();
+
+		// Convert values to digits and set sprites
+		for(int i=0; i<5; ++i)
 		{
 
-			if(i != 4)
-			{
-				sum_altitude += altitude_digits[i+1].number*Mathf.Pow(10.0f,(float)(i+1));
-				//sum_velocity += velocity_digits[i+1].number*Mathf.Pow(10.0f,(float)(i+1));
+			int digit = speed_horizontal%10;
+			speed_horizontal_digits[i].number = digit;
+			speed_horizontal /= 10;
 
-			}
-			else
-			{
-				sum_altitude = 0.0f;
-				sum_velocity = 0.0f;
-			}
-			altitude_digits[i].number = (int) ( (altitude - sum_altitude)/(Mathf.Pow(10.0f,(float)i)) );
-			//velocity_digits[i].number = (int) ( (speed - sum_velocity)/(Mathf.Pow(10.0f,(float)i)) );
+			digit = speed_vertical%10;
+			speed_vertical_digits[i].number = digit;
+			speed_vertical_digits[i].bluered = isRed;
+			speed_vertical /= 10;
 
+			
 		}
 
-		float number = speed;
-		while (number > 0) 
-		{
-			float val = number%10;
 
-			print(val);
-			number /= 10;
-		}
-
-		/*
-		Debug.Log ("Altitude: " + altitude);
-		Debug.Log ("Altitude digits: ");
-		for(int i =0 ; i<5; ++i)
-			Debug.Log ("i: " + i + " n: "+ altitude_digits[i].number);
-		*/
 	}
 }

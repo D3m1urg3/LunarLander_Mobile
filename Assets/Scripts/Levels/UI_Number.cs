@@ -37,8 +37,7 @@ public class UI_Number : MonoBehaviour {
 			{
 			case true: // red
 
-				foreach (SpriteRenderer sprite in number_renders_red)
-					sprite.enabled = false;
+				DisableRender();
 
 				number_renders_red[number].enabled = true;
 		
@@ -46,18 +45,17 @@ public class UI_Number : MonoBehaviour {
 
 			case false: // blue
 
-				foreach (SpriteRenderer sprite in number_renders_blue)
-					sprite.enabled = false;
+				DisableRender();
 
 				number_renders_blue[number].enabled = true;
 
 				break;
 
 			default:
-				foreach (SpriteRenderer sprite in number_renders_blue)
-					sprite.enabled = false;
-				
+				DisableRender();
+
 				number_renders_blue[number].enabled = true;
+
 				break;
 
 			}
@@ -70,6 +68,15 @@ public class UI_Number : MonoBehaviour {
 		}
 
 
+	}
+
+	public void DisableRender()
+	{
+		foreach (SpriteRenderer sprite in number_renders_blue)
+			sprite.enabled = false;
+		
+		foreach (SpriteRenderer sprite in number_renders_red)
+			sprite.enabled = false;
 	}
 
 }
