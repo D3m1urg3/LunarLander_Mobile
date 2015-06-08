@@ -12,17 +12,16 @@ public class ShipCollisionRegister : MonoBehaviour {
 
 	void OnCollisionEnter2D (Collision2D col)
 	{
-		if (col.gameObject.name == "LandPad") 
+		if (col.gameObject.tag == "LandPad") 
 		{
 			landingZoneCollision = true;
-			LanPadVal_w_smoke multi = col.gameObject.GetComponent<LanPadVal_w_smoke>();
 //			scoreMultiplier = multi.scoreMultiplier;
 		}
 		else if (col.gameObject.name == "nonLandingZones")
 			nonLandingZoneCollision = true;
-		else if (col.gameObject.name == "Laser")
+		else if (col.gameObject.tag == "Laser")
 			laserCollision = true;
-		else if(col.gameObject.name == "Singularity")
+		else if(col.gameObject.tag == "Singularity")
 			singularityCollision = true;
 	}
 
