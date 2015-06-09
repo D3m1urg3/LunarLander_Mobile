@@ -10,6 +10,6 @@ public class StartButtonManager_forMobile : MonoBehaviour {
 	
 	public void Start_Button_Pushed()
 	{
-		Application.LoadLevel(1);
+		Application.LoadLevel("Selection_Menu");
 	}
 }

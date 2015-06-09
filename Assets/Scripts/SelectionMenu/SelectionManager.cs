@@ -10,10 +10,12 @@ public struct initialMission {
 
 public class SelectionManager : MonoBehaviour {
 
+	public GameObject[] missionCards;
 	public initialMission[] fuel;
 	public Transform[] missions;
 
 	private Hashtable fuelHash;
+	private int actMissionCard = 0;
 
 	// Checks which leves are avaiable to the player
 	private void loadSelectionMenu() {
@@ -43,6 +45,19 @@ public class SelectionManager : MonoBehaviour {
 		//loadSelectionMenu ();
 		//Application.LoadLevel (lvl);
 
+	}
+
+	public void changeCard (int incr) {
+		actMissionCard += incr;
+		if (actMissionCard < 0) {
+			actMissionCard = 0;
+		} else if (actMissionCard > missionCards.Length) {
+			actMissionCard = missionCards.Length;
+		}
+		for (int i = 0; i < missionCards.Length; ++i) {
+			if (i == actMissionCard) missionCards[i].SetActive(true);
+			else missionCards[i].SetActive(false);
+		}
 	}
 
 	// Use this for initialization
