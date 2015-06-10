@@ -50,7 +50,7 @@ public class Manager : MonoBehaviour {
 
 	void OnApplicationQuit()
 	{
-		PlayerPrefs.DeleteAll ();
+		//PlayerPrefs.DeleteAll ();
 	}
 
 }
