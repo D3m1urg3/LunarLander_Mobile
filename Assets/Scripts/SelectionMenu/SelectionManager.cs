@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System;
 using System.Collections;
 
@@ -15,9 +16,10 @@ public class SelectionManager : MonoBehaviour {
 	public GameObject[] missionCards;
 	public initialMission[] fuel;
 	public Transform[] missions;
+	public Transform popup;
 
-	private Hashtable fuelHash;
 	private int actMissionCard = 0;
+	private int missionSelected = 0;
 
 	// Checks which leves are avaiable to the player
 	private void loadSelectionMenu() {
@@ -59,7 +61,33 @@ public class SelectionManager : MonoBehaviour {
 		} else {
 			Application.LoadLevel (lvl);
 		}
+	}
 
+	public void launchPopup(int lvl) {
+		popup.Find ("Score").GetComponent<Text> ().text = PlayerPrefs.GetInt("level_"+lvl+"_score").ToString();
+		popup.Find ("Fuel").GetComponent<Text> ().text = PlayerPrefs.GetInt("level_"+lvl+"_fuel").ToString();
+		foreach (Transform child in popup.Find ("Level")) {
+			if (child.name == (lvl+1).ToString()) child.gameObject.SetActive(true);
+			else child.gameObject.SetActive(false);
+		}
+		missionSelected = lvl;
+		popup.gameObject.SetActive (true);
+	}
+
+	public void closePopup() {
+		popup.gameObject.SetActive (false);
+	}
+
+	public void launchLevel() {
+		/*
+		if (missionSelected == 0 && PlayerPrefs.GetInt ("level_" + missionSelected + "_score", 0) <= 0) {
+			Application.LoadLevel ("Tutorial");
+		} else {
+			Application.LoadLevel (missionSelected);
+		}
+		*/
+		PlayerPrefs.SetInt ("level_" + missionSelected + "_score", 3685);
+		PlayerPrefs.SetInt ("level_" + (missionSelected+1) + "_fuel", 1250);
 	}
 
 	public void changeCard (int incr) {
@@ -73,11 +101,6 @@ public class SelectionManager : MonoBehaviour {
 			if (i == actMissionCard) missionCards[i].SetActive(true);
 			else missionCards[i].SetActive(false);
 		}
-	}
-
-
-	void Awake() {
-
 	}
 
 	void Start () {
