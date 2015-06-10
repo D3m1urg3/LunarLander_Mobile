@@ -79,15 +79,15 @@ public class SelectionManager : MonoBehaviour {
 	}
 
 	public void launchLevel() {
-		/*
+
 		if (missionSelected == 0 && PlayerPrefs.GetInt ("level_" + missionSelected + "_score", 0) <= 0) {
 			Application.LoadLevel ("Tutorial");
 		} else {
 			Application.LoadLevel (missionSelected);
 		}
-		*/
-		PlayerPrefs.SetInt ("level_" + missionSelected + "_score", 3685);
-		PlayerPrefs.SetInt ("level_" + (missionSelected+1) + "_fuel", 1250);
+
+		//PlayerPrefs.SetInt ("level_" + missionSelected + "_score", 3685);
+		//PlayerPrefs.SetInt ("level_" + (missionSelected+1) + "_fuel", 1250);
 	}
 
 	public void changeCard (int incr) {
@@ -105,7 +105,7 @@ public class SelectionManager : MonoBehaviour {
 
 	void Start () {
 		// Temporary, for development porpuses
-		//PlayerPrefs.DeleteAll ();
+		PlayerPrefs.DeleteAll ();
 		// Initialize score
 		// TODO: initialize fuel on especific levels (first levels of each zone)
 		for (int i = 0; i < missions.Length; ++i) {
