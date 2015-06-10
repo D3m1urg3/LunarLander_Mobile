@@ -105,7 +105,7 @@ public class SelectionManager : MonoBehaviour {
 
 	void Start () {
 		// Temporary, for development porpuses
-		PlayerPrefs.DeleteAll ();
+		//PlayerPrefs.DeleteAll ();
 		// Initialize score
 		// TODO: initialize fuel on especific levels (first levels of each zone)
 		for (int i = 0; i < missions.Length; ++i) {

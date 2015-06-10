@@ -47,4 +47,12 @@ public class GameManager : MonoBehaviour {
 		}
 
 	}
+
+	public void GotoMenu() {
+		Application.LoadLevel("Selection_Menu");
+	}
+
+	public void Replay() {
+		Application.LoadLevel(Application.loadedLevel);
+	}
 }
