@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public struct man
 {
@@ -44,6 +45,8 @@ public class Manager : MonoBehaviour {
 
 		//PlayerPrefs.DeleteAll ();
 	}
+
+
 
 	void OnApplicationQuit()
 	{

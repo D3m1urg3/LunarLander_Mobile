@@ -82,7 +82,7 @@ public class SelectionManager : MonoBehaviour {
 			PlayerPrefs.SetInt ("level_0_score",0);
 		}
 		PlayerPrefs.SetInt("level_0_score", 0);
-		PlayerPrefs.SetInt("level_0_fuel", 100);
+		PlayerPrefs.SetInt("level_0_fuel", 1000);
 		PlayerPrefs.Save ();
 	}
 	

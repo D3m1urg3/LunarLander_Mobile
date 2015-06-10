@@ -117,11 +117,11 @@ public class SpaceShipManager_forMobile : MonoBehaviour {
 		}
 
 		// Ship animation triggers & Smoke animation based on raycast
-		smoke_anim.SetBool ("NearToFloor", isFloorNear);
-		SmokePlayer ();
 		engine_anim.SetBool ("EnginesON", enginesON); //engines
 		ship_anim.SetBool ("Destroyed", shipDestroyed); //Destruction
-
+		smoke_anim.SetBool ("NearToFloor", isFloorNear);
+		SmokePlayer ();
+		
 		//Sound FX
 
 		if (enginesON && !man.soundFxManager.thrust_sound.isPlaying) 
@@ -168,10 +168,17 @@ public class SpaceShipManager_forMobile : MonoBehaviour {
 	//Method for detecting floor relative to ship
 
 	public float ray_distance;
+	public float smoke_apear_distance;
 	public bool isFloorNear;
 
 	public void SmokePlayer()
 	{
+		if (!enginesON)
+		{
+			isFloorNear = false;
+			return;
+		}
+
 		RaycastHit2D floorHit;
 		LayerMask mask = 1 << 10; // Fucking unity using fucking bitwise shit! Damn fuckers, suck my ...
 
@@ -183,12 +190,18 @@ public class SpaceShipManager_forMobile : MonoBehaviour {
 		floorHit = Physics2D.Raycast (ship_position, ray_direction,ray_distance,mask);
 		
 		//Debug.Log ("ray dir: " + ray_direction);
-		//Debug.Log("distance to floor: " + floorHit.distance);
+		Debug.Log("distance to floor: " + floorHit.distance);
 
-		smoke.transform.position = new Vector3 (floorHit.point.x - 0.35f*ray_direction.x, floorHit.point.y - 0.35f*ray_direction.y, 0.0f);
-		smoke.transform.rotation = ship.transform.rotation;
+		if(floorHit.distance < smoke_apear_distance)
+		{
+			smoke.transform.position = new Vector3 (floorHit.point.x - 0.35f*ray_direction.x, floorHit.point.y - 0.35f*ray_direction.y, 0.0f);
+			smoke.transform.rotation = ship.transform.rotation;
 
-		isFloorNear = enginesON;
+			isFloorNear = true;
+		}
+		else
+			isFloorNear = false;
+
 		
 	}
 
