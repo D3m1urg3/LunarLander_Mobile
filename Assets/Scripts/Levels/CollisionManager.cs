@@ -135,7 +135,7 @@ public class CollisionManager : MonoBehaviour {
 				//man.uiLeftManager.score += ShipCollisionRegister.scoreMultiplier * man.shipManager.fuel;
 				//Restart Level
 				man.cameraManager.thisCamera.transform.eulerAngles = Vector3.zero;
-				int score = man.shipManager.fuel * 2;
+				int score = man.shipManager.fuel * man.colManager.ship_collisions.scoreMultiplier;
 				if (PlayerPrefs.GetInt("level_" + Application.loadedLevel + "_score",0) < score) PlayerPrefs.SetInt ("level_" + Application.loadedLevel + "_score", score);
 				if (PlayerPrefs.GetInt("level_" + Application.loadedLevel + "_score",0) > 0 && PlayerPrefs.GetInt("level_" + Application.loadedLevel+1 + "_fuel",0) < man.shipManager.fuel) PlayerPrefs.SetInt ("level_" + (Application.loadedLevel+1) + "_fuel", man.shipManager.fuel);
 				PlayerPrefs.Save ();

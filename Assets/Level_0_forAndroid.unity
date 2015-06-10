@@ -2123,7 +2123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   emission_time: .5
   stars_lifetime: 0
-  stars_on_screen: 4
+  stars_on_screen: 2
   pool_size: 10
   shooting_star: {fileID: 162274, guid: d94c8db5782ac324d945a01ea207c88a, type: 2}
   stars: []
