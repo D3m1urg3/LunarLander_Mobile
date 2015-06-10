@@ -7,12 +7,12 @@ public class BlackHole : MonoBehaviour {
 	Rigidbody2D ship_physics;
 
 	Animator blackhole_anim;
-	AnimatorClipInfo clip;
+
+	public Collider2D singularity;
 
 	public float gravity_push;
 
 	public bool isActive;
-	bool prev_state;
 
 	Vector2 gravity_force;
 
@@ -33,7 +33,6 @@ public class BlackHole : MonoBehaviour {
 	void Awake()
 	{
 		isActive = false;
-		prev_state = isActive;
 	}
 	// Use this for initialization
 	void Start () 
@@ -51,17 +50,11 @@ public class BlackHole : MonoBehaviour {
 		//Blackhole animation
 		blackhole_anim.SetBool ("BlackHole_active", isActive);
 
-		if (prev_state != isActive) 
-		{
-
-			prev_state = isActive;
-		}
-
-
+		singularity.enabled = isActive;
 
 
 		//Black Hole Behaviour
-		if(isInRange)
+		if(isInRange && isActive)
 		{
 			float ship_to_hole = (gameObject.transform.position - ship.transform.position).magnitude;
 			gravity_force = (gameObject.transform.position - ship.transform.position);

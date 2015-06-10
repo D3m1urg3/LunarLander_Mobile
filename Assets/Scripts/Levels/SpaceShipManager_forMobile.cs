@@ -8,6 +8,7 @@ public class SpaceShipManager_forMobile : MonoBehaviour {
 	//Managed object
 	public GameObject ship;
 	public GameObject engines;
+	public GameObject smoke;
 	public Camera cam;
 	//Public behaviour parameters
 	//Movement
@@ -24,14 +25,16 @@ public class SpaceShipManager_forMobile : MonoBehaviour {
 	
 	//Private variables
 	Vector3 angles; // Vector to store rotation angles
-	Animator ship_anim; // Ship animator
+	Animator ship_anim; // Ship animators
 	Animator engine_anim;
+	Animator smoke_anim;
 	AudioSource shipFX;
 
 	void Awake()
 	{
 		enginesON = false;
 		shipDestroyed = false;
+		isFloorNear = false;
 
 	}
 	
@@ -58,6 +61,9 @@ public class SpaceShipManager_forMobile : MonoBehaviour {
 
 		enginesON = false;
 		engine_anim = engines.GetComponent<Animator> ();
+
+		smoke_anim = smoke.GetComponent<Animator> ();
+		smoke_anim.SetBool ("NearToFloor", isFloorNear);
 
 
 		shipDestroyed = false;
@@ -112,8 +118,9 @@ public class SpaceShipManager_forMobile : MonoBehaviour {
 			}
 		}
 
-		// Ship animation triggers
+		// Ship animation triggers & Smoke animation based on raycast
 
+		SmokePlayer ();
 		engine_anim.SetBool ("EnginesON", enginesON); //engines
 		ship_anim.SetBool ("Destroyed", shipDestroyed); //Destruction
 
@@ -159,8 +166,33 @@ public class SpaceShipManager_forMobile : MonoBehaviour {
 				fuel--;
 		}
 	}
-	
-	
-	
+
+	//Method for detecting floor relative to ship
+
+	public float ray_distance;
+	public bool isFloorNear;
+
+	public void SmokePlayer()
+	{
+		RaycastHit2D floorHit;
+		LayerMask mask = 1 << 10; // Fucking unity using fucking bitwise shit! Damn fuckers, suck my ...
+
+		Vector2 ship_position = new Vector2 (ship.transform.position.x, ship.transform.position.y);
+
+		Vector3 vec = ship.transform.TransformDirection (Vector3.up);
+		Vector2 ray_direction = new Vector2(-vec.x,-vec.y);
+		
+		floorHit = Physics2D.Raycast (ship_position, ray_direction,ray_distance,mask);
+		
+		//Debug.Log ("ray dir: " + ray_direction);
+		//Debug.Log("distance to floor: " + floorHit.distance);
+
+		smoke.transform.position = new Vector3 (floorHit.point.x - 0.35f*ray_direction.x, floorHit.point.y - 0.35f*ray_direction.y, 0.0f);
+		smoke.transform.rotation = ship.transform.rotation;
+
+		isFloorNear = enginesON;
+		
+	}
+
 	
 }

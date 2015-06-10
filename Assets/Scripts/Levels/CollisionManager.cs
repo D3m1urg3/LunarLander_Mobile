@@ -74,7 +74,7 @@ public class CollisionManager : MonoBehaviour {
 	{
 		bool goodLandingSpeed = false;
 
-		Debug.Log (Mathf.Abs (ship.GetComponent<Rigidbody2D> ().velocity.y));
+//		Debug.Log (Mathf.Abs (ship.GetComponent<Rigidbody2D> ().velocity.y));
 		if (Mathf.Abs (ship.GetComponent<Rigidbody2D>().velocity.y) < maxLandingSpeed)
 			goodLandingSpeed = true;
 		

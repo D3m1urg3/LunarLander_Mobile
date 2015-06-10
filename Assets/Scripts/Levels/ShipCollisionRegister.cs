@@ -10,6 +10,12 @@ public class ShipCollisionRegister : MonoBehaviour {
 
 	public static int scoreMultiplier;
 
+	void Update()
+	{
+		Debug.Log (nonLandingZoneCollision);
+	}
+
+
 	void OnCollisionEnter2D (Collision2D col)
 	{
 		if (col.gameObject.tag == "LandPad") 
@@ -17,7 +23,7 @@ public class ShipCollisionRegister : MonoBehaviour {
 			landingZoneCollision = true;
 //			scoreMultiplier = multi.scoreMultiplier;
 		}
-		else if (col.gameObject.name == "nonLandingZones")
+		else if (col.gameObject.tag == "nonLandingZones")
 			nonLandingZoneCollision = true;
 		else if (col.gameObject.tag == "Laser")
 			laserCollision = true;
