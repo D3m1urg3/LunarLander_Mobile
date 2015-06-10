@@ -88,17 +88,17 @@ public class CollisionManager : MonoBehaviour {
 		man.textManager.message.text = "GAME OVER";
 		man.shipManager.shipDestroyed = true;
 
+		// Add pop-up
 		foreach(Touch touch in Input.touches)
 		{
 			if(touch.phase != TouchPhase.Ended)
 			{
 				//Restart Ship Collision register
 				ship_collisions.Restart();
-				//Log Score
-				PlayerPrefs.SetInt("fuel",man.shipManager.fuel);
 				//Restart Level
 				man.cameraManager.thisCamera.transform.eulerAngles = Vector3.zero;
-				Application.LoadLevel(Application.loadedLevel);
+				//Application.LoadLevel(Application.loadedLevel);
+				Application.LoadLevel("Selection_Menu");
 			}
 		}
 
@@ -133,12 +133,14 @@ public class CollisionManager : MonoBehaviour {
 				ship_collisions.Restart();
 				//Show Score
 				//man.uiLeftManager.score += ShipCollisionRegister.scoreMultiplier * man.shipManager.fuel;
-				//Log Score
-				//PlayerPrefs.SetInt("score",man.uiLeftManager.score);
-				PlayerPrefs.SetInt("fuel",man.shipManager.fuel);
 				//Restart Level
 				man.cameraManager.thisCamera.transform.eulerAngles = Vector3.zero;
-				Application.LoadLevel(Application.loadedLevel);
+				int score = man.shipManager.fuel * 2;
+				if (PlayerPrefs.GetInt("level_" + Application.loadedLevel + "_score",0) < score) PlayerPrefs.SetInt ("level_" + Application.loadedLevel + "_score", score);
+				if (PlayerPrefs.GetInt("level_" + Application.loadedLevel + "_score",0) > 0 && PlayerPrefs.GetInt("level_" + Application.loadedLevel+1 + "_fuel",0) < man.shipManager.fuel) PlayerPrefs.SetInt ("level_" + (Application.loadedLevel+1) + "_fuel", man.shipManager.fuel);
+				PlayerPrefs.Save ();
+				Application.LoadLevel("Selection_Menu");
+				//Application.LoadLevel(Application.loadedLevel);
 			}
 		}
 	}

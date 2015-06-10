@@ -75,7 +75,11 @@ public class SelectionManager : MonoBehaviour {
 		}
 	}
 
-	// Use this for initialization
+
+	void Awake() {
+
+	}
+
 	void Start () {
 		// Temporary, for development porpuses
 		//PlayerPrefs.DeleteAll ();
@@ -96,8 +100,7 @@ public class SelectionManager : MonoBehaviour {
 		}
 		PlayerPrefs.Save ();
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 		loadSelectionMenu ();
 		logMissionScores ();
