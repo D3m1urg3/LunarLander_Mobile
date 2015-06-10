@@ -22,7 +22,7 @@ public class SelectionManager : MonoBehaviour {
 	// Checks which leves are avaiable to the player
 	private void loadSelectionMenu() {
 		for (int i = 0; i < missions.Length; ++i) {
-			if (PlayerPrefs.GetInt("level_" + i + "_score",-1) == -1) {
+			if (PlayerPrefs.GetInt("level_" + i + "_score",-1) == -1 && !(i > 0 && PlayerPrefs.GetInt("level_" + (i-1) + "_score",0) > 0)) {
 				missions[i].Find("Disabled").gameObject.SetActive(true);
 				missions[i].Find("Enabled").gameObject.SetActive(false);
 			} else {
@@ -39,20 +39,26 @@ public class SelectionManager : MonoBehaviour {
 
 	private void logMissionScores() {
 		for (int i = 0; i < missions.Length; ++i) {
-			Debug.Log (PlayerPrefs.GetInt("level_"+i+"_score"));
-			Debug.Log (PlayerPrefs.GetInt("level_"+i+"_fuel"));
+			Debug.Log ("Level "+i+" score: "+PlayerPrefs.GetInt("level_"+i+"_score"));
+			Debug.Log ("Level "+i+" fuel: "+PlayerPrefs.GetInt("level_"+i+"_fuel"));
 		}
 	}
 
 	// Modify to get the correct values (or move it to a suitable location)
 	public void testButton(int lvl) {
+		/*
 		PlayerPrefs.SetInt ("level_" + lvl + "_score", 100);
 		if ((lvl + 1) < missions.Length) {
 			if (PlayerPrefs.GetInt("level_" + (lvl+1) + "_score",-1) == -1) PlayerPrefs.SetInt("level_" + (lvl+1) + "_score", 0);
 			if (PlayerPrefs.GetInt ("level_" + (lvl+1) + "_fuel",-1) < 100) PlayerPrefs.SetInt ("level_" + (lvl+1) + "_fuel", 100);
 		}
+*/
 		//loadSelectionMenu ();
-		Application.LoadLevel (lvl);
+		if (lvl == 0 && PlayerPrefs.GetInt ("level_" + lvl + "_score", 0) == 0) {
+			Application.LoadLevel ("Tutorial");
+		} else {
+			Application.LoadLevel (lvl);
+		}
 
 	}
 
