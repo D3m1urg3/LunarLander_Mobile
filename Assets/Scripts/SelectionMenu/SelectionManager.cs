@@ -37,6 +37,13 @@ public class SelectionManager : MonoBehaviour {
 		}
 	}
 
+	private void logMissionScores() {
+		for (int i = 0; i < missions.Length; ++i) {
+			Debug.Log (PlayerPrefs.GetInt("level_"+i+"_score"));
+			Debug.Log (PlayerPrefs.GetInt("level_"+i+"_fuel"));
+		}
+	}
+
 	// Modify to get the correct values (or move it to a suitable location)
 	public void testButton(int lvl) {
 		PlayerPrefs.SetInt ("level_" + lvl + "_score", 100);
@@ -81,14 +88,13 @@ public class SelectionManager : MonoBehaviour {
 		if (PlayerPrefs.GetInt ("level_0_score") == -1) {
 			PlayerPrefs.SetInt ("level_0_score",0);
 		}
-		PlayerPrefs.SetInt("level_0_score", 0);
-		PlayerPrefs.SetInt("level_0_fuel", 1000);
 		PlayerPrefs.Save ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		loadSelectionMenu ();
+		logMissionScores ();
 		//Debug.Log(PlayerPrefs.GetInt("level_1_score"));
 		//Debug.Log(PlayerPrefs.GetInt("level_2_fuel"));
 	}
