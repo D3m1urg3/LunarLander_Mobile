@@ -3809,6 +3809,7 @@ GameObject:
   - 4: {fileID: 1312223191}
   - 212: {fileID: 1312223193}
   - 95: {fileID: 1312223192}
+  - 114: {fileID: 1312223194}
   m_Layer: 8
   m_Name: Shooting_Star
   m_TagString: Untagged
@@ -3871,6 +3872,19 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &1312223194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1312223190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6e68209ed98eba4ca39455b660dcd33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifetime: 0
+  isFading: 0
 --- !u!1 &1364543778
 GameObject:
   m_ObjectHideFlags: 0
