@@ -3,24 +3,26 @@ using System.Collections;
 
 public class ShipCollisionRegister : MonoBehaviour {
 	
-	public static bool landingZoneCollision = false;
-	public static bool nonLandingZoneCollision = false;
-	public static bool laserCollision = false;
-	public static bool singularityCollision = false;
+	public bool landingZoneCollision = false;
+	public bool nonLandingZoneCollision = false;
+	public bool laserCollision = false;
+	public bool singularityCollision = false;
 
-	public static int scoreMultiplier;
+	public int scoreMultiplier;
 
 	void Update()
 	{
-		Debug.Log (nonLandingZoneCollision);
 	}
 
 
 	void OnCollisionEnter2D (Collision2D col)
 	{
+		Debug.Log (col.gameObject.tag);
+
 		if (col.gameObject.tag == "LandPad") 
 		{
 			landingZoneCollision = true;
+			
 //			scoreMultiplier = multi.scoreMultiplier;
 		}
 		else if (col.gameObject.tag == "nonLandingZones")
@@ -31,7 +33,7 @@ public class ShipCollisionRegister : MonoBehaviour {
 			singularityCollision = true;
 	}
 
-	public static void Restart()
+	public void Restart()
 	{
 		landingZoneCollision = false;
 		nonLandingZoneCollision = false;

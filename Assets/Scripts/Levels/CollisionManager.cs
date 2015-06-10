@@ -5,6 +5,7 @@ public class CollisionManager : MonoBehaviour {
 
 	GameObject ship;
 	GameObject engines;
+	ShipCollisionRegister ship_collisions;
 
 	Camera cam;
 
@@ -14,6 +15,7 @@ public class CollisionManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		ship = man.shipManager.ship;
+		ship_collisions = ship.GetComponent<ShipCollisionRegister> ();
 		engines = man.shipManager.engines;
 		cam = man.cameraManager.thisCamera;
 
@@ -22,26 +24,26 @@ public class CollisionManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (ShipCollisionRegister.nonLandingZoneCollision) 
+		if (ship_collisions.nonLandingZoneCollision) 
 		{
 			man.shipManager.shipDestroyed = true;
 
 			Invoke("DestroyAndRestart",1);
 
 		}
-		else if(ShipCollisionRegister.laserCollision)
+		else if(ship_collisions.laserCollision)
 		{
 			man.shipManager.shipDestroyed = true;
 			
 			Invoke("DestroyAndRestart",1);
 		}
-		else if(ShipCollisionRegister.singularityCollision)
+		else if(ship_collisions.singularityCollision)
         {
 			man.shipManager.shipDestroyed = true;
 			
 			Invoke("DestroyAndRestart",1);
 		}
-		else if (ShipCollisionRegister.landingZoneCollision ) {
+		else if (ship_collisions.landingZoneCollision ) {
 			if ( CheckLandingSpeed() && CheckLandingInclination() )
 			{
 
@@ -83,7 +85,6 @@ public class CollisionManager : MonoBehaviour {
 
 	void DestroyAndRestart()
 	{
-		engines.SetActive (false);
 		man.textManager.message.text = "GAME OVER";
 		man.shipManager.shipDestroyed = true;
 
@@ -92,12 +93,11 @@ public class CollisionManager : MonoBehaviour {
 			if(touch.phase != TouchPhase.Ended)
 			{
 				//Restart Ship Collision register
-				ShipCollisionRegister.Restart();
+				ship_collisions.Restart();
 				//Log Score
 				PlayerPrefs.SetInt("fuel",man.shipManager.fuel);
 				//Restart Level
 				man.cameraManager.thisCamera.transform.eulerAngles = Vector3.zero;
-				engines.SetActive (true);
 				Application.LoadLevel(Application.loadedLevel);
 			}
 		}
@@ -130,7 +130,7 @@ public class CollisionManager : MonoBehaviour {
 			if(touch.phase != TouchPhase.Ended)
 			{
 				//Restart Ship Collision register
-				ShipCollisionRegister.Restart();
+				ship_collisions.Restart();
 				//Show Score
 				//man.uiLeftManager.score += ShipCollisionRegister.scoreMultiplier * man.shipManager.fuel;
 				//Log Score

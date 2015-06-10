@@ -63,8 +63,6 @@ public class SpaceShipManager_forMobile : MonoBehaviour {
 		engine_anim = engines.GetComponent<Animator> ();
 
 		smoke_anim = smoke.GetComponent<Animator> ();
-		smoke_anim.SetBool ("NearToFloor", isFloorNear);
-
 
 		shipDestroyed = false;
 		ship_anim = ship.GetComponent<Animator>();
@@ -119,7 +117,7 @@ public class SpaceShipManager_forMobile : MonoBehaviour {
 		}
 
 		// Ship animation triggers & Smoke animation based on raycast
-
+		smoke_anim.SetBool ("NearToFloor", isFloorNear);
 		SmokePlayer ();
 		engine_anim.SetBool ("EnginesON", enginesON); //engines
 		ship_anim.SetBool ("Destroyed", shipDestroyed); //Destruction
