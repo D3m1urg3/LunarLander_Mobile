@@ -2,6 +2,8 @@
 using System;
 using System.Collections;
 
+// TODO: change playerpref to smth more safe.
+
 [Serializable]
 public struct initialMission {
 	public int idx;
@@ -43,7 +45,7 @@ public class SelectionManager : MonoBehaviour {
 			if (PlayerPrefs.GetInt ("level_" + (lvl+1) + "_fuel",-1) < 100) PlayerPrefs.SetInt ("level_" + (lvl+1) + "_fuel", 100);
 		}
 		//loadSelectionMenu ();
-		//Application.LoadLevel (lvl);
+		Application.LoadLevel (lvl);
 
 	}
 
@@ -63,17 +65,25 @@ public class SelectionManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		// Temporary, for development porpuses
-		PlayerPrefs.DeleteAll ();
+		//PlayerPrefs.DeleteAll ();
 		// Initialize score
 		// TODO: initialize fuel on especific levels (first levels of each zone)
 		for (int i = 0; i < missions.Length; ++i) {
 			if (!PlayerPrefs.HasKey("level_"+i+"_score")) PlayerPrefs.SetInt("level_"+i+"_score",-1);
 			if (!PlayerPrefs.HasKey("level_"+i+"_fuel")) PlayerPrefs.SetInt("level_"+i+"_fuel",-1);
 		}
+		// Initialize initial fuel.
+		for (int i = 0; i < fuel.Length; ++i) {
+			PlayerPrefs.SetInt("level_"+fuel[i].idx+"_fuel", fuel[i].fuel);
+		}
+
 		// Make first mission avaiable allways (TODO: more than one initial mission avaiable?)
 		if (PlayerPrefs.GetInt ("level_0_score") == -1) {
 			PlayerPrefs.SetInt ("level_0_score",0);
 		}
+		PlayerPrefs.SetInt("level_0_score", 0);
+		PlayerPrefs.SetInt("level_0_fuel", 100);
+		PlayerPrefs.Save ();
 	}
 	
 	// Update is called once per frame

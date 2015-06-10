@@ -30,7 +30,6 @@ public class SpaceShipManager_forMobile : MonoBehaviour {
 
 	void Awake()
 	{
-		fuel = 1000;
 		enginesON = false;
 		shipDestroyed = false;
 
@@ -64,19 +63,19 @@ public class SpaceShipManager_forMobile : MonoBehaviour {
 		shipDestroyed = false;
 		ship_anim = ship.GetComponent<Animator>();
 		shipFX = ship.GetComponent<AudioSource> ();
-		
+		//PlayerPrefs.SetInt ("level_test_fuel", fuel);
 		// Fuel value storage in Player Prefs
 		// TODO: make it cleaner
-		if (PlayerPrefs.HasKey ("fuel")) 
+		if (PlayerPrefs.HasKey ("level_"+Application.loadedLevel+"_fuel")) 
 		{
-			fuel = PlayerPrefs.GetInt("fuel");
+			fuel = PlayerPrefs.GetInt("level_"+Application.loadedLevel+"_fuel");
 		} 
 		else 
 		{
+			Debug.Log ("No fuel set for this level!");
 			fuel = 1000;
-			PlayerPrefs.SetInt ("fuel", fuel);
+			PlayerPrefs.SetInt ("level_"+Application.loadedLevel+"_fuel", fuel);
 		}
-		
 	}
 	
 	// Update is called once per frame
