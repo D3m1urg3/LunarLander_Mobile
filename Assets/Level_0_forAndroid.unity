@@ -2405,7 +2405,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 635556108}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.29999995, y: 2.58999991, z: 0}
+  m_LocalPosition: {x: 3.70000005, y: 2.58999991, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 623984853}
@@ -2422,11 +2422,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   emission_time: .5
-  stars_lifetime: 0
-  stars_on_screen: 2
-  pool_size: 10
-  shooting_star: {fileID: 162274, guid: d94c8db5782ac324d945a01ea207c88a, type: 2}
-  stars: []
+  stars_lifetime: 1
+  stars_on_screen: 1
+  pool_size: 3
+  shooting_star_close: {fileID: 107526, guid: fddbe39c2d0878744bebc0349eca328f, type: 2}
+  shooting_star_mid: {fileID: 182312, guid: 8afc5263326d9174bb3020d0e544c9bf, type: 2}
+  shooting_star_far: {fileID: 163796, guid: 2807d370efd04914195a1f90a1d7247b, type: 2}
+  stars_close: []
+  stars_mid: []
+  stars_far: []
 --- !u!1 &701999471
 GameObject:
   m_ObjectHideFlags: 0
