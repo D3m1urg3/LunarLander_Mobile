@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour {
 	{
 		levelStart = false;
 
+		man.colManager.invicible = true;
 		man.textManager.message.text = "TOUCH TO START";
 		
 
@@ -41,6 +42,7 @@ public class GameManager : MonoBehaviour {
 				{
 					man.textManager.message.text = "";
 					ship_phys.isKinematic = false;
+					man.colManager.invicible = false;
 					levelStart = true;
 				}
 			}

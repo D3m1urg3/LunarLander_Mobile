@@ -940,6 +940,51 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5a1205ba5fea68547961f74999d1e349, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &279746979
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 279746980}
+  - 114: {fileID: 279746981}
+  m_Layer: 8
+  m_Name: Asteroid_Pool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &279746980
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 279746979}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.46000004, y: 2.56999993, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 623984853}
+  m_RootOrder: 7
+--- !u!114 &279746981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 279746979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7965ffdfc1b6b454787e67dd1dfb60f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  emission_time: 1
+  asteroid_lifetime: 5
+  asteroids_on_screen: 1
+  pool_size: 4
+  asteroid: {fileID: 138768, guid: 80807264ee0ab484ca5b88beb017a545, type: 2}
+  asteroids: []
 --- !u!1 &280566534
 GameObject:
   m_ObjectHideFlags: 0
@@ -2032,6 +2077,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxLandingSpeed: .5
   maxLandingInclination: 10
+  invicible: 0
   completedPopup: {fileID: 1249777678}
   failPopup: {fileID: 550106011}
 --- !u!1 &550106011
@@ -2327,6 +2373,7 @@ Transform:
   - {fileID: 2125840548}
   - {fileID: 436318760}
   - {fileID: 635556109}
+  - {fileID: 279746980}
   m_Father: {fileID: 0}
   m_RootOrder: 3
 --- !u!1 &629469477
@@ -3100,7 +3147,7 @@ Rigidbody2D:
   m_AngularDrag: .0500000007
   m_GravityScale: .0199999996
   m_FixedAngle: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -3136,6 +3183,7 @@ MonoBehaviour:
   nonLandingZoneCollision: 0
   laserCollision: 0
   singularityCollision: 0
+  asteroidCollision: 0
   scoreMultiplier: 0
 --- !u!82 &887742083
 AudioSource:

@@ -11,6 +11,7 @@ public class CollisionManager : MonoBehaviour {
 
 	public float maxLandingSpeed;
 	public float maxLandingInclination;
+	public bool invicible;
 	public GameObject completedPopup;
 	public GameObject failPopup;
 
@@ -22,11 +23,13 @@ public class CollisionManager : MonoBehaviour {
 		ship_collisions = ship.GetComponent<ShipCollisionRegister> ();
 		engines = man.shipManager.engines;
 		cam = man.cameraManager.thisCamera;
-
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+		if (invicible)
+			return;
 
 		if (ship_collisions.nonLandingZoneCollision) 
 		{
@@ -43,6 +46,12 @@ public class CollisionManager : MonoBehaviour {
 		}
 		else if(ship_collisions.singularityCollision)
         {
+			man.shipManager.shipDestroyed = true;
+			
+			Invoke("DestroyAndRestart",1);
+		}
+		else if(ship_collisions.asteroidCollision)
+		{
 			man.shipManager.shipDestroyed = true;
 			
 			Invoke("DestroyAndRestart",1);

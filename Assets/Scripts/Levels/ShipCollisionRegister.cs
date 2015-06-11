@@ -7,6 +7,7 @@ public class ShipCollisionRegister : MonoBehaviour {
 	public bool nonLandingZoneCollision = false;
 	public bool laserCollision = false;
 	public bool singularityCollision = false;
+	public bool asteroidCollision = false;
 
 	public int scoreMultiplier;
 
@@ -37,6 +38,8 @@ public class ShipCollisionRegister : MonoBehaviour {
 			laserCollision = true;
 		else if(col.gameObject.tag == "Singularity")
 			singularityCollision = true;
+		else if(col.gameObject.tag == "Asteroid")
+			asteroidCollision = true;
 	}
 
 	public void Restart()
@@ -45,6 +48,7 @@ public class ShipCollisionRegister : MonoBehaviour {
 		nonLandingZoneCollision = false;
 		laserCollision = false;
 		singularityCollision = false;
+		asteroidCollision = false;
 	}
 	
 }
