@@ -93,6 +93,9 @@ public class CollisionManager : MonoBehaviour {
 			
 			man.shipManager.fuel += ship_collisions.fuel_powerup;
 
+			man.comanderMsgManager.comander_msg.msg_index = 1;
+			man.comanderMsgManager.comander_msg.isMsgGood = true;
+
 			if(man.shipManager.fuel > man.uiFuel.max_fuel)
 			{
 				man.uiFuel.max_fuel = man.shipManager.fuel;

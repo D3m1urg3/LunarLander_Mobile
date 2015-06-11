@@ -23,6 +23,8 @@ public class UI_Fuel_Manager : MonoBehaviour {
 	int percent_0x;
 	int percent_x0;
 
+	bool doOnce;
+
 
 	void Awake()
 	{
@@ -41,6 +43,7 @@ public class UI_Fuel_Manager : MonoBehaviour {
 		fuel_percent = (int)(fuel / max_fuel) * 100;
 		number_0x.bluered = number_x0.bluered = false; //Numbers in blue 
 		number_0x.number = number_x0.number = 9;
+		doOnce = true;
 	}
 
 	public void RestartMaxFuel()
@@ -65,6 +68,14 @@ public class UI_Fuel_Manager : MonoBehaviour {
 		{
 			fuel_warning_sprite.enabled = true; //activate warning ring
 			number_0x.bluered = number_x0.bluered = true; //Numbers in red 
+
+			if(doOnce)
+			{
+				man.comanderMsgManager.comander_msg.msg_index = 1;
+				man.comanderMsgManager.comander_msg.isMsgCaution = true;
+				doOnce = false;
+			}
+
 		}
 
 

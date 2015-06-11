@@ -13,6 +13,7 @@ public struct man
 	public static CollisionManager colManager;
 	public static OverlayTextManager textManager;
 	public static SoundFXManager soundFxManager;
+	public static ComanderMsgManager comanderMsgManager;
 
 }
 
@@ -27,6 +28,7 @@ public class Manager : MonoBehaviour {
 	public CollisionManager colliders;
 	public OverlayTextManager messages;
 	public SoundFXManager sound;
+	public ComanderMsgManager comander;
 
 	public static bool IsGyroSupported;
 
@@ -42,6 +44,7 @@ public class Manager : MonoBehaviour {
 		man.colManager = colliders;
 		man.textManager = messages;
 		man.soundFxManager = sound;
+		man.comanderMsgManager = comander;
 
 		//Is gyroscope supported?
 		IsGyroSupported = SystemInfo.supportsGyroscope;

@@ -78,7 +78,7 @@ public class Comander_Messages : MonoBehaviour {
 			
 			messages_caution[msg_index].enabled = true;
 			comander_anim.SetBool ("RedMsg", isMsgCaution);
-			render = messages_good[msg_index];
+			render = messages_caution[msg_index];
 			Invoke("Fade",msg_time);
 		}
 
@@ -100,6 +100,7 @@ public class Comander_Messages : MonoBehaviour {
 				timer = 0f;
 				render.color = new Color(render.color.r,render.color.g, render.color.b, 1.0f);
 				isFading = false;
+				msg_index = 0;
 				isMsgGood = isMsgCaution = sendMsg = false;
 				comander_anim.SetBool ("GreenMsg", isMsgGood);
 				comander_anim.SetBool ("RedMsg", isMsgCaution);

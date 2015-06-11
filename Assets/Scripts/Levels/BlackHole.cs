@@ -17,17 +17,25 @@ public class BlackHole : MonoBehaviour {
 	Vector2 gravity_force;
 
 	bool isInRange;
+
+	bool doOnce;
 	
 	void OnTriggerEnter2D(Collider2D col)
 	{
 		if (col.gameObject.name == ship.name)
+		{
 			isInRange = true;
+			isActive = true;
+		}
 	}
 
 	void OnTriggerExit2D(Collider2D col)
 	{
 		if (col.gameObject.name == ship.name)
+		{
 			isInRange = false;
+			isActive = false;
+		}
 	}
 
 	void Awake()
@@ -37,6 +45,7 @@ public class BlackHole : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
+		doOnce = true;
 		isInRange = false;
 		ship = man.shipManager.ship;
 		blackhole_anim = gameObject.GetComponent<Animator> ();
@@ -51,6 +60,14 @@ public class BlackHole : MonoBehaviour {
 		blackhole_anim.SetBool ("BlackHole_active", isActive);
 
 		singularity.enabled = isActive;
+
+		//Comander msg when it goes active
+		if(doOnce && isActive)
+		{
+			doOnce =false;
+			man.comanderMsgManager.comander_msg.msg_index = 0;
+			man.comanderMsgManager.comander_msg.isMsgCaution = true;
+		}
 
 
 		//Black Hole Behaviour

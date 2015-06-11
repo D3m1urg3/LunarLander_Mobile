@@ -57,6 +57,7 @@ public class ShipShieldManager : MonoBehaviour {
 	public void DisableShield()
 	{
 		isShieldUP = false;
+		man.colManager.invicible = false;;
 		shield.SetActive(false);
 	}
 }

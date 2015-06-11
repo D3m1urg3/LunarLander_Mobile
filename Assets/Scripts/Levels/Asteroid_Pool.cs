@@ -12,10 +12,14 @@ public class Asteroid_Pool : MonoBehaviour {
 	public GameObject asteroid;
 	public List<GameObject> asteroids;
 
+	bool doOnce;
+
 	int active_asteroids;
 
 	// Use this for initialization
 	void Start () {
+
+		doOnce = true;
 		
 		asteroids = new List<GameObject> ();
 		
@@ -33,7 +37,14 @@ public class Asteroid_Pool : MonoBehaviour {
 	void Starfall()
 	{
 		active_asteroids = 0;
-		
+
+		if(doOnce)
+		{
+			doOnce = false;
+			man.comanderMsgManager.comander_msg.msg_index = 2;
+			man.comanderMsgManager.comander_msg.isMsgCaution = true;
+		}
+
 		for(int i=0; i<pool_size; ++i)
 		{
 	
