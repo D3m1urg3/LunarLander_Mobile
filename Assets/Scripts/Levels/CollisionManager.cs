@@ -33,6 +33,7 @@ public class CollisionManager : MonoBehaviour {
 
 		if (ship_collisions.nonLandingZoneCollision) 
 		{
+			
 			man.shipManager.shipDestroyed = true;
 
 			Invoke("DestroyAndRestart",1);
@@ -40,21 +41,36 @@ public class CollisionManager : MonoBehaviour {
 		}
 		else if(ship_collisions.laserCollision)
 		{
+			
 			man.shipManager.shipDestroyed = true;
 			
 			Invoke("DestroyAndRestart",1);
 		}
 		else if(ship_collisions.singularityCollision)
         {
+			
 			man.shipManager.shipDestroyed = true;
 			
 			Invoke("DestroyAndRestart",1);
 		}
 		else if(ship_collisions.asteroidCollision)
 		{
+			
 			man.shipManager.shipDestroyed = true;
 			
 			Invoke("DestroyAndRestart",1);
+		}
+		else if(ship_collisions.fuelBarrelCollision)
+		{
+			ship_collisions.Restart();
+			
+			man.shipManager.fuel += ship_collisions.fuel_powerup;
+
+			if(man.shipManager.fuel > man.uiFuel.max_fuel)
+			{
+				man.uiFuel.max_fuel = man.shipManager.fuel;
+				man.uiFuel.RestartMaxFuel();
+			}
 		}
 		else if (ship_collisions.landingZoneCollision ) {
 			if ( CheckLandingSpeed() && CheckLandingInclination() )
@@ -101,7 +117,7 @@ public class CollisionManager : MonoBehaviour {
 		//man.textManager.message.text = "GAME OVER";
 		failPopup.SetActive (true);
 		man.shipManager.shipDestroyed = true;
-
+		man.shipManager.ship.GetComponent<Rigidbody2D> ().isKinematic = true;
 		// Add pop-up
 		foreach(Touch touch in Input.touches)
 		{
@@ -149,6 +165,8 @@ public class CollisionManager : MonoBehaviour {
 		//Restart Level
 		// something something camera
 		man.cameraManager.thisCamera.transform.eulerAngles = Vector3.zero;
+		man.shipManager.ship.GetComponent<Rigidbody2D> ().isKinematic = true;
+
 		//set up popup
 		foreach (Transform child in completedPopup.transform.Find ("Level")) {
 			if (child.name == (Application.loadedLevel+1).ToString()) child.gameObject.SetActive(true);

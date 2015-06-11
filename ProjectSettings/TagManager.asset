@@ -9,6 +9,7 @@ TagManager:
   - LandPad
   - nonLandingZones
   - Asteroid
+  - Fuel_Barrel
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - Ship
   - Dinamic Background
   - Terrain
-  - 
+  - Interactive Objects
   - 
   - 
   - 

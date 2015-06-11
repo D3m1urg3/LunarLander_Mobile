@@ -8,8 +8,10 @@ public class ShipCollisionRegister : MonoBehaviour {
 	public bool laserCollision = false;
 	public bool singularityCollision = false;
 	public bool asteroidCollision = false;
+	public bool fuelBarrelCollision = false;
 
 	public int scoreMultiplier;
+	public int fuel_powerup;
 
 	void Start()
 	{
@@ -40,6 +42,12 @@ public class ShipCollisionRegister : MonoBehaviour {
 			singularityCollision = true;
 		else if(col.gameObject.tag == "Asteroid")
 			asteroidCollision = true;
+		else if(col.gameObject.tag == "Fuel_Barrel")
+		{
+			fuelBarrelCollision = true;
+			fuel_powerup = col.gameObject.GetComponent<Fuel_Barrel>().fuel_value;
+			col.gameObject.SetActive(false);
+		}
 	}
 
 	public void Restart()
@@ -49,6 +57,7 @@ public class ShipCollisionRegister : MonoBehaviour {
 		laserCollision = false;
 		singularityCollision = false;
 		asteroidCollision = false;
+		fuelBarrelCollision = false;
 	}
 	
 }

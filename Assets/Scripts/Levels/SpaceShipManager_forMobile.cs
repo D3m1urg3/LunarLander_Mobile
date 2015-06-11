@@ -22,7 +22,7 @@ public class SpaceShipManager_forMobile : MonoBehaviour {
 	public int fuel;	
 	public bool enginesON;
 	public bool shipDestroyed;
-	
+
 	//Private variables
 	Vector3 angles; // Vector to store rotation angles
 	Animator ship_anim; // Ship animators
@@ -86,6 +86,7 @@ public class SpaceShipManager_forMobile : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
 
 		if(Manager.IsGyroSupported || true)
 		{

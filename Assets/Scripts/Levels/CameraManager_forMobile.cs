@@ -59,6 +59,9 @@ public class CameraManager_forMobile : MonoBehaviour {
 
 		thisCamera.transform.position = new Vector3(ship.transform.position.x, ship.transform.position.y,-10.0f);
 
+		if (man.shipManager.shipDestroyed)
+			return;
+
 
 		//Move camera with the ship
 		if (Manager.IsGyroSupported || true) //for mobile

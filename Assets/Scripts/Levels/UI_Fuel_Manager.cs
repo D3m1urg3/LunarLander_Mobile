@@ -12,7 +12,7 @@ public class UI_Fuel_Manager : MonoBehaviour {
 
 	public int fuel_reserve_level;
 
-	int max_fuel;
+	public int max_fuel;
 	int fuel;
 
 	int prev_fuel_level;
@@ -41,6 +41,13 @@ public class UI_Fuel_Manager : MonoBehaviour {
 		fuel_percent = (int)(fuel / max_fuel) * 100;
 		number_0x.bluered = number_x0.bluered = false; //Numbers in blue 
 		number_0x.number = number_x0.number = 9;
+	}
+
+	public void RestartMaxFuel()
+	{
+		fuel_per_slice = (float)max_fuel / 18;
+		prev_fuel_level = (int) ((float) fuel / fuel_per_slice);
+		fuel_percent = (int)(fuel / max_fuel) * 100;
 	}
 	
 	// Update is called once per frame
