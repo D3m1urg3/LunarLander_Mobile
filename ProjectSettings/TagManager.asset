@@ -10,6 +10,7 @@ TagManager:
   - nonLandingZones
   - Asteroid
   - Fuel_Barrel
+  - Shield_PowerUP
   layers:
   - Default
   - TransparentFX
