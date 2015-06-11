@@ -9,6 +9,7 @@ public class ShipCollisionRegister : MonoBehaviour {
 	public bool singularityCollision = false;
 	public bool asteroidCollision = false;
 	public bool fuelBarrelCollision = false;
+	public bool shieldPowerUPCollision = false;
 
 	public int scoreMultiplier;
 	public int fuel_powerup;
@@ -48,6 +49,11 @@ public class ShipCollisionRegister : MonoBehaviour {
 			fuel_powerup = col.gameObject.GetComponent<Fuel_Barrel>().fuel_value;
 			col.gameObject.SetActive(false);
 		}
+		else if(col.gameObject.tag == "Shield_PowerUP")
+		{
+			shieldPowerUPCollision = true;
+			col.gameObject.SetActive(false);
+		}
 	}
 
 	public void Restart()
@@ -58,6 +64,7 @@ public class ShipCollisionRegister : MonoBehaviour {
 		singularityCollision = false;
 		asteroidCollision = false;
 		fuelBarrelCollision = false;
+		shieldPowerUPCollision = false;
 	}
 	
 }

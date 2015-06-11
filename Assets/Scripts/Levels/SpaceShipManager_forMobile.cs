@@ -59,7 +59,7 @@ public class SpaceShipManager_forMobile : MonoBehaviour {
 
 		}
 
-		ship.GetComponent<Rigidbody2D> ().isKinematic = false;
+		//ship.GetComponent<Rigidbody2D> ().isKinematic = false;
 
 		enginesON = false;
 		engine_anim = engines.GetComponent<Animator> ();

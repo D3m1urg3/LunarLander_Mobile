@@ -5,13 +5,13 @@ public class Fuel_Barrel : MonoBehaviour {
 
 	public int fuel_value;
 
-	// Use this for initialization
-	void Start () {
-	
+	public float speed;
+
+
+	void Update()
+	{
+		transform.RotateAround (transform.position, Vector3.forward, speed * Time.deltaTime);
+
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

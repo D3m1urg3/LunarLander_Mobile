@@ -33,32 +33,59 @@ public class CollisionManager : MonoBehaviour {
 
 		if (ship_collisions.nonLandingZoneCollision) 
 		{
-			
-			man.shipManager.shipDestroyed = true;
-
-			Invoke("DestroyAndRestart",1);
+			if(man.shipShieldManager.isShieldUP)
+			{
+				man.shipShieldManager.OnShieldHit();
+			}
+			else
+			{
+				man.shipManager.shipDestroyed = true;
+				
+				Invoke("DestroyAndRestart",1);
+			}
 
 		}
 		else if(ship_collisions.laserCollision)
 		{
-			
-			man.shipManager.shipDestroyed = true;
-			
-			Invoke("DestroyAndRestart",1);
+			if(man.shipShieldManager.isShieldUP)
+			{
+				man.shipShieldManager.OnShieldHit();
+			}
+			else
+			{
+				man.shipManager.shipDestroyed = true;
+				
+				Invoke("DestroyAndRestart",1);
+			}
+
 		}
 		else if(ship_collisions.singularityCollision)
         {
-			
-			man.shipManager.shipDestroyed = true;
-			
-			Invoke("DestroyAndRestart",1);
+			if(man.shipShieldManager.isShieldUP)
+			{
+				man.shipShieldManager.OnShieldHit();
+			}
+			else
+			{
+				man.shipManager.shipDestroyed = true;
+				
+				Invoke("DestroyAndRestart",1);
+			}
+
 		}
 		else if(ship_collisions.asteroidCollision)
 		{
-			
-			man.shipManager.shipDestroyed = true;
-			
-			Invoke("DestroyAndRestart",1);
+			if(man.shipShieldManager.isShieldUP)
+			{
+				man.shipShieldManager.OnShieldHit();
+			}
+			else
+			{
+				man.shipManager.shipDestroyed = true;
+				
+				Invoke("DestroyAndRestart",1);
+			}
+
 		}
 		else if(ship_collisions.fuelBarrelCollision)
 		{
@@ -72,16 +99,21 @@ public class CollisionManager : MonoBehaviour {
 				man.uiFuel.RestartMaxFuel();
 			}
 		}
+		else if( ship_collisions.shieldPowerUPCollision)
+		{
+			ship_collisions.Restart();
+			man.shipShieldManager.EnableShield();
+		}
 		else if (ship_collisions.landingZoneCollision ) {
 			if ( CheckLandingSpeed() && CheckLandingInclination() )
 			{
-
+				invicible = true;
 				Invoke("GrazAndRestart",1);
 
 			}
 			else
 			{
-
+				invicible = true;
 				Invoke("DestroyAndRestart",1);
 
 			}

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public struct man
 {
 	public static SpaceShipManager_forMobile shipManager;
+	public static ShipShieldManager shipShieldManager;
 	//public static UILeftManager uiLeftManager;
 	//public static UIRightManager uiRightManager;
 	public static UI_Fuel_Manager uiFuel;
@@ -18,6 +19,7 @@ public struct man
 public class Manager : MonoBehaviour {
 
 	public SpaceShipManager_forMobile ship;
+	public ShipShieldManager ship_shield;
 	//public UILeftManager uiLeft;
 	//public UIRightManager uiRight;
 	public UI_Fuel_Manager fuel;
@@ -32,6 +34,7 @@ public class Manager : MonoBehaviour {
 
 
 		man.shipManager = ship;
+		man.shipShieldManager = ship_shield;
 	//	man.uiLeftManager = uiLeft;
 	//	man.uiRightManager = uiRight;
 		man.uiFuel = fuel;
