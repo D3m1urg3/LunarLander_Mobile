@@ -22,7 +22,7 @@ public class CollisionManager : MonoBehaviour {
 		ship = man.shipManager.ship;
 		ship_collisions = ship.GetComponent<ShipCollisionRegister> ();
 		engines = man.shipManager.engines;
-		cam = man.cameraManager.thisCamera;
+		cam = man.cameraManager.thisCamera;	
 	}
 	
 	// Update is called once per frame
@@ -204,14 +204,14 @@ public class CollisionManager : MonoBehaviour {
 
 		//set up popup
 		foreach (Transform child in completedPopup.transform.Find ("Level")) {
-			if (child.name == (Application.loadedLevel+1).ToString()) child.gameObject.SetActive(true);
+			if (child.name == (Application.loadedLevel).ToString()) child.gameObject.SetActive(true);
 			else child.gameObject.SetActive(false);
 		}
 		completedPopup.SetActive (true);
 		// save score
 		int score = man.shipManager.fuel * man.colManager.ship_collisions.scoreMultiplier;
-		if (PlayerPrefs.GetInt("level_" + Application.loadedLevel + "_score",0) < score) PlayerPrefs.SetInt ("level_" + Application.loadedLevel + "_score", score);
-		if (PlayerPrefs.GetInt("level_" + Application.loadedLevel + "_score",0) > 0 && PlayerPrefs.GetInt("level_" + Application.loadedLevel+1 + "_fuel",0) < man.shipManager.fuel) PlayerPrefs.SetInt ("level_" + (Application.loadedLevel+1) + "_fuel", man.shipManager.fuel);
+		if (PlayerPrefs.GetInt("level_" + (Application.loadedLevel-1) + "_score",0) < score) PlayerPrefs.SetInt ("level_" + (Application.loadedLevel-1) + "_score", score);
+		if (PlayerPrefs.GetInt("level_" + (Application.loadedLevel-1) + "_score",0) > 0 && PlayerPrefs.GetInt("level_" + Application.loadedLevel + "_fuel",0) < man.shipManager.fuel) PlayerPrefs.SetInt ("level_" + (Application.loadedLevel) + "_fuel", man.shipManager.fuel);
 		PlayerPrefs.Save ();
 		// restart something
 		ship_collisions.Restart();

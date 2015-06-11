@@ -2153,7 +2153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e8ba5b7d1fd36543ad896bcd1374e8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLandingSpeed: .5
+  maxLandingSpeed: 3
   maxLandingInclination: 10
   invicible: 0
   completedPopup: {fileID: 1249777678}

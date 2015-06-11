@@ -5,10 +5,22 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Level_0_forAndroid.unity
   - enabled: 1
     path: Assets/StartScreen_forMobile.unity
+  - enabled: 1
+    path: Assets/Build Scenes/Level_0_build.unity
+  - enabled: 1
+    path: Assets/Build Scenes/Level_1_build.unity
+  - enabled: 1
+    path: Assets/Build Scenes/Level_2_build.unity
+  - enabled: 1
+    path: Assets/Build Scenes/Level_3_build.unity
+  - enabled: 1
+    path: Assets/Build Scenes/Level_4_build.unity
+  - enabled: 1
+    path: Assets/Build Scenes/Level_5_build.unity
   - enabled: 1
     path: Assets/Selection_Menu.unity
   - enabled: 1

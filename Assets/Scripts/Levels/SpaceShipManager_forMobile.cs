@@ -72,15 +72,15 @@ public class SpaceShipManager_forMobile : MonoBehaviour {
 		//PlayerPrefs.SetInt ("level_test_fuel", fuel);
 		// Fuel value storage in Player Prefs
 		// TODO: make it cleaner
-		if (PlayerPrefs.HasKey ("level_"+Application.loadedLevel+"_fuel")) 
+		if (PlayerPrefs.HasKey ("level_"+(Application.loadedLevel-1)+"_fuel")) 
 		{
-			fuel = PlayerPrefs.GetInt("level_"+Application.loadedLevel+"_fuel");
+			fuel = PlayerPrefs.GetInt("level_"+(Application.loadedLevel-1)+"_fuel");
 		} 
 		else 
 		{
 			Debug.Log ("No fuel set for this level!");
 			fuel = 1000;
-			PlayerPrefs.SetInt ("level_"+Application.loadedLevel+"_fuel", fuel);
+			PlayerPrefs.SetInt ("level_"+(Application.loadedLevel-1)+"_fuel", fuel);
 		}
 	}
 	

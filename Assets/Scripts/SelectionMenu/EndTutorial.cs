@@ -16,7 +16,7 @@ public class EndTutorial : StateMachineBehaviour {
 	// OnStateExit is called before OnStateExit is called on any state inside this state machine
 	override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
 		//PlayerPrefs.SetInt ("level_" + 0 + "_score", 100);
-		Application.LoadLevel (0);
+		Application.LoadLevel (1);
 	}
 
 	// OnStateMove is called before OnStateMove is called on any state inside this state machine
