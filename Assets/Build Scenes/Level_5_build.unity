@@ -585,7 +585,7 @@ Transform:
   m_GameObject: {fileID: 160409605}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.17199993, y: -3.24499989, z: 0}
-  m_LocalScale: {x: .717921793, y: .717921674, z: .717921674}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 198461048}
   m_Father: {fileID: 1705695553}
@@ -752,7 +752,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 3.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2466,7 +2466,7 @@ Transform:
   m_GameObject: {fileID: 623984851}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.39290941, y: 1.39290965, z: 1.39290965}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 280566535}
   - {fileID: 229223595}
@@ -6665,7 +6665,7 @@ MonoBehaviour:
   thisCamera: {fileID: 227025450}
   zoomTrigger: {fileID: 449993145}
   ship: {fileID: 887742076}
-  camZoomSize: 3
+  camZoomSize: 2
   cam_angular_speed: 100
 --- !u!1 &2012293609
 GameObject:

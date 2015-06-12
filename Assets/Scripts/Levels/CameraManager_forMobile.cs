@@ -9,7 +9,7 @@ public class CameraManager_forMobile : MonoBehaviour {
 
 	public GameObject ship;
 	
-	public float camZoomSize = 3f;
+	public float camZoomSize;
 	public float cam_angular_speed;
 	
 	//Private members
@@ -26,7 +26,7 @@ public class CameraManager_forMobile : MonoBehaviour {
 
 	void Awake()
 	{
-		thisCamera.orthographicSize = 5f;
+		thisCamera.orthographicSize = 3.5f;
 	}
 	
 	// Use this for initialization
